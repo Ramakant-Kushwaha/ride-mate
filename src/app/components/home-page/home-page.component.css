@@ -1,0 +1,159 @@
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 2%;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-datetime {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.datetime-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.datetime-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.datetime-value {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-card {
+  position: absolute;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: float 6s ease-in-out infinite;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.floating-card:nth-child(1) {
+  top: 20%;
+  left: 10%;
+}
+
+.floating-card:nth-child(2) {
+  top: 50%;
+  right: 20%;
+  animation-delay: -2s;
+}
+
+.floating-card:nth-child(3) {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-text {
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.features-section {
+  padding: 30px 20px;
+}
+.features-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.feature-icon {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.feature-button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0 auto;
+  cursor: pointer;
+}

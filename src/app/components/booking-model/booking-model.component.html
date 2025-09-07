@@ -1,0 +1,93 @@
+<div class="modal" (click)="onModalClick($event)">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <span class="modal-icon">🎫</span>
+        Book Your Ride
+      </h3>
+      <button class="close-btn" (click)="closeBookingModal()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Ride Summary -->
+      <div class="booking-summary">
+        <div class="summary-item">
+          <span class="summary-label">Route: </span>
+          <span class="summary-value">
+            {{ selectedRide.pickupPoint | uppercase }} →
+            {{ selectedRide.destination | uppercase }}
+          </span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Time: </span>
+          <span class="summary-value">{{
+            selectedRide.time | date : "short"
+          }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Vehicle: </span>
+          <span class="summary-value">
+            {{ selectedRide.vehicleType | uppercase }} ({{
+              selectedRide.vehicleNo | uppercase
+            }})
+          </span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Available Seats: </span>
+          <span class="summary-value seats-highlight">{{
+            selectedRide.vacantSeats
+          }}</span>
+        </div>
+      </div>
+
+      <!-- Employee ID Input -->
+      <div class="emp-id-from">
+        <label for="passenger-id" class="form-label">
+          <span class="label-icon">👤</span>
+          Your Employee ID * &nbsp;
+        </label>
+        <input
+          type="text"
+          id="passenger-id"
+          [(ngModel)]="passengerEmployeeId"
+          class="form-input"
+          placeholder="Enter your employee ID"
+          [disabled]="isBooking"
+        />
+      </div>
+
+      <!-- Booking Terms -->
+      <div class="booking-terms">
+        <p class="terms-text">
+          <span class="terms-icon">ℹ️</span>
+          By booking this ride, you agree to be at the pickup point on time.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        class="cancel-btn"
+        (click)="closeBookingModal()"
+        [disabled]="isBooking"
+      >
+        Cancel
+      </button>
+      <button
+        class="confirm-btn"
+        (click)="bookRide()"
+        [disabled]="isBooking || !passengerEmployeeId.trim()"
+        [ngClass]="{
+          'disabled-btn': isBooking || !passengerEmployeeId.trim()
+        }"
+      >
+        <span *ngIf="isBooking" class="loading-spinner small"></span>
+        <span class="btn-text">
+          {{ isBooking ? "Booking..." : "Confirm Booking" }}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

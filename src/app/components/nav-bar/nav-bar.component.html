@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Brand/Logo -->
+    <div class="nav-brand" (click)="navigateTo('/home')">
+      <span class="brand-icon">🚌</span>
+      <span class="brand-text">Ride Mate</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-menu">
+      <a
+        *ngFor="let item of navItems"
+        class="nav-link"
+        [class.active]="isActiveRoute(item.path)"
+        (click)="navigateTo(item.path)"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </div>
+  </div>
+</nav>

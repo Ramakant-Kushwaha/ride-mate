@@ -1,0 +1,102 @@
+<div
+  [attr.data-vehicle-type]="ride.vehicleType.toLowerCase()"
+  class="ride-card"
+>
+  <!-- Ride Header -->
+  <div class="ride-header">
+    <div class="vehicle-info">
+      <span class="vehicle-badge" [class]="ride.vehicleType.toLowerCase()">
+        <span class="vehicle-icon">
+          {{ ride.vehicleType === "Car" ? "🚗" : "🏍️" }}
+        </span>
+        {{ ride.vehicleType }}
+      </span>
+    </div>
+
+    <span class="vehicle-number">{{ ride.vehicleNo }}</span>
+
+    <div class="ride-time">
+      <span class="time-icon">🕐</span>
+      <span class="time-value">{{ ride.time | date : "short" }}</span>
+    </div>
+  </div>
+
+  <!-- Route Information -->
+  <div class="route-section">
+    <div class="route-item pickup">
+      <div class="route-marker pickup-marker">
+        <span class="marker-icon">📍</span>
+      </div>
+      <div class="route-details">
+        <span class="route-label">Pick-up</span>
+        <span class="route-location">{{ ride.pickupPoint }}</span>
+      </div>
+    </div>
+
+    <div class="route-connector">
+      <div class="connector-line"></div>
+      <div class="connector-arrow">→</div>
+    </div>
+
+    <div class="route-item destination">
+      <div class="route-marker destination-marker">
+        <span class="marker-icon">🎯</span>
+      </div>
+      <div class="route-details">
+        <span class="route-label">Destination</span>
+        <span class="route-location">{{ ride.destination }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ride Info -->
+  <div class="ride-info">
+    <div class="info-item driver">
+      <span class="info-icon">👤</span>
+      <span class="info-label">Employee ID:</span>
+      <span class="info-value">{{ ride.employeeId }}</span>
+    </div>
+
+    <div class="info-item seats">
+      <span class="info-icon">💺</span>
+      <span class="info-label">Available Seats:</span>
+      <span class="seats-count" [class]="getSeatsClass(ride.vacantSeats)">
+        {{ ride.vacantSeats }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Action Button -->
+  <div class="ride-actions">
+    <button
+      class="book-ride-btn"
+      [disabled]="ride.vacantSeats === 0"
+      [ngClass]="{
+            'disabled-btn': ride.vacantSeats === 0,
+        }"
+      (click)="openBookingModal(ride)"
+    >
+      <span class="btn-icon">🎫</span>
+      <span *ngIf="ride.vacantSeats > 0; else fullyBooked">
+        Book This Ride
+      </span>
+      <ng-template #fullyBooked> Fully Booked </ng-template>
+    </button>
+  </div>
+
+  <!-- Urgency Indicator -->
+  <div
+    class="urgency-indicator"
+    *ngIf="ride.vacantSeats <= 2 && ride.vacantSeats > 0"
+    [class]="ride.vacantSeats === 1 ? 'critical' : 'warning'"
+  >
+    <span class="urgency-icon">⚠️</span>
+    <span class="urgency-text">
+      {{
+        ride.vacantSeats === 1
+          ? "Last seat!"
+          : "Only " + ride.vacantSeats + " seats left!"
+      }}
+    </span>
+  </div>
+</div>

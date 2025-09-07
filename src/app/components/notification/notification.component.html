@@ -1,0 +1,24 @@
+<!-- ...existing code... -->
+<div
+  class="notification-container"
+  *ngIf="notifications.length > 0"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <div
+    class="notification"
+    *ngFor="let n of notifications"
+    [ngClass]="n.type || 'info'"
+    role="status"
+  >
+    <div class="message">{{ n.message }}</div>
+    <button
+      class="close-btn"
+      (click)="dismiss(n.id)"
+      aria-label="Dismiss notification"
+    >
+      ×
+    </button>
+  </div>
+</div>
+<!-- ...existing code... -->

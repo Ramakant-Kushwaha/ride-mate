@@ -1,14 +1,20 @@
-export function required(control: any) {
-    return control.value ? null : { required: true };
-}
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function emailValidator(control: any) {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(control.value) ? null : { invalidEmail: true };
-}
+export class CustomValidators {
+  static vehicleNumber(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
 
-export function minLength(min: number) {
-    return (control: any) => {
-        return control.value && control.value.length >= min ? null : { minLength: { requiredLength: min, actualLength: control.value.length } };
-    };
+    if (!value) {
+      return { required: true };
+    }
+
+    const vehicleNumberPattern =
+      /^([A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{1,4}|[0-9]{2}BH[0-9]{4}[A-Z]{1,2})$/;
+
+    if (!vehicleNumberPattern.test(value.replace(/\s+/g, '').toUpperCase())) {
+      return { invalidVehicleNumber: true };
+    }
+
+    return null;
+  }
 }

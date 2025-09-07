@@ -1,0 +1,54 @@
+/* ...existing code... */
+.notification-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 320px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: #fff;
+  font-size: 0.95rem;
+  opacity: 0.98;
+}
+
+.notification .message {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+/* variants */
+.notification.info {
+  background: #2f86eb;
+}
+.notification.success {
+  background: #2e7d32;
+}
+.notification.warning {
+  background: #f9a825;
+  color: #111;
+}
+.notification.error {
+  background: #c62828;
+}
+
+/* close button */
+.close-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.25rem;
+}

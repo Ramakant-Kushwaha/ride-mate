@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
 import { RideService } from '../../services/ride.service';
 
 @Component({
@@ -29,14 +28,14 @@ export class HomePageComponent {
       route: '/rides',
       color: '#27ae60',
     },
-    {
-      icon: '⏰',
-      title: 'Real-time Updates',
-      description: 'Get instant updates on ride availability',
-      action: 'View Dashboard',
-      route: '/rides',
-      color: '#f39c12',
-    },
+    // {
+    //   icon: '⏰',
+    //   title: 'Real-time Updates',
+    //   description: 'Get instant updates on ride availability',
+    //   action: 'View Dashboard',
+    //   route: '/rides',
+    //   color: '#f39c12',
+    // },
   ];
 
   constructor(private router: Router, private rideService: RideService) {}

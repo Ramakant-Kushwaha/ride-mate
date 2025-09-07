@@ -1,0 +1,133 @@
+<div class="ride-list-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">
+        <span class="title-icon">🚗</span>
+        Available Rides
+      </h1>
+      <p class="page-subtitle">Find and book rides shared by your colleagues</p>
+    </div>
+
+    <div class="header-actions">
+      <button
+        class="filter-toggle-btn"
+        (click)="toggleFilters()"
+        [class.active]="showFilters"
+      >
+        <span class="btn-icon">🔍</span>
+        {{ showFilters ? "Hide Filters" : "Show Filters" }}
+      </button>
+
+      <div class="rides-count" *ngIf="!loading">
+        <span class="count-number">{{ availableRides.length }}</span>
+        <span class="count-label"
+          >ride{{ availableRides.length !== 1 ? "s" : "" }} available</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section" [class.show]="showFilters">
+    <div class="filters-container">
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label for="vehicle-type-filter" class="filter-label">
+            <span class="label-icon">🚙</span>
+            Vehicle Type
+          </label>
+          <select
+            id="vehicle-type-filter"
+            [(ngModel)]="filters.vehicleType"
+            (change)="onFilterChange()"
+            class="filter-select"
+          >
+            <option>All Vehicles</option>
+            <option *ngFor="let type of vehicleTypes" [value]="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="time-filter" class="filter-label">
+            <span class="label-icon">⏰</span>
+            Date
+          </label>
+          <input
+            type="date"
+            id="time-filter"
+            [(ngModel)]="filters.time"
+            (change)="onFilterChange()"
+            class="filter-input"
+          />
+        </div>
+
+        <div class="filter-actions">
+          <button class="clear-filters-btn" (click)="clearFilters()">
+            <span class="btn-icon">🗑️</span>
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Finding available rides...</p>
+  </div>
+
+  <!-- Rides List -->
+  <div class="rides-section" *ngIf="!loading">
+    <!-- No Rides Message -->
+    <div class="no-rides-container" *ngIf="availableRides.length === 0">
+      <div class="no-rides-content">
+        <div class="no-rides-icon">🚫</div>
+        <h2 class="no-rides-title">No rides available</h2>
+        <p class="no-rides-message">
+          <span *ngIf="filters.vehicleType || filters.time; else noFilters">
+            Try adjusting your filters or check back later.
+          </span>
+          <ng-template #noFilters>
+            No rides have been shared yet today. Be the first to add a ride!
+          </ng-template>
+        </p>
+        <div class="no-rides-actions">
+          <button class="add-ride-btn" routerLink="/add-ride">
+            <span class="btn-icon">➕</span>
+            Add Your Ride
+          </button>
+          <button
+            class="clear-filters-btn"
+            (click)="clearFilters()"
+            *ngIf="filters.vehicleType || filters.time"
+          >
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rides Grid -->
+    <div class="rides-grid" *ngIf="availableRides.length > 0">
+      <div class="rides" *ngFor="let item of availableRides">
+        <app-ride-card
+          [ride]="item"
+          (openBookingWindow)="openBookingModal(item)"
+        ></app-ride-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="model" *ngIf="showBookingModal">
+    <app-booking-model
+      (onCloseBookingModal)="closeBookingModal()"
+      (onBookRide)="bookRide($event)"
+      [selectedRide]="selectedRide"
+    ></app-booking-model>
+  </div>
+</div>

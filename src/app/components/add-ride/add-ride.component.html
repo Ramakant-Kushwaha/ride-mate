@@ -58,7 +58,7 @@
           formControlName="vacantSeats"
           [class.error]="isFieldInvalid('vacantSeats')"
           min="1"
-          max="10"
+          max="20"
           placeholder="Number of seats"
         />
         <div class="error-message" *ngIf="isFieldInvalid('vacantSeats')">
@@ -69,12 +69,13 @@
 
     <div class="form-row">
       <div class="form-group">
-        <label for="time">Time *</label>
+        <label for="time">Date & Time *</label>
         <input
           type="datetime-local"
           id="time"
           formControlName="time"
           [class.error]="isFieldInvalid('time')"
+          [value]="minTime"
           [min]="minTime"
         />
         <div class="error-message" *ngIf="isFieldInvalid('time')">
@@ -111,7 +112,12 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isSubmitting || addRideForm.invalid"
+      [ngClass]="{ 'disabled-btn': addRideForm.invalid || isSubmitting }"
+    >
       <span *ngIf="isSubmitting">Adding...</span>
       <span *ngIf="!isSubmitting">Add Ride</span>
     </button>

@@ -1,0 +1,70 @@
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-btn {
+  padding: 0px 12px;
+  font-size: 1.5em;
+  border-radius: 5px;
+  border: 1px solid;
+  background: #e47373;
+  cursor: pointer;
+}
+
+.summary-item {
+  margin-bottom: 8px;
+}
+
+.emp-id-from {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  padding: 4px 8px;
+  border: 2px solid #e1e8ed;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-terms {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.cancel-btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0 16px;
+  cursor: pointer;
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0 16px;
+  cursor: pointer;
+}
+
+.disabled-btn {
+  opacity: 0.6;
+  pointer-events: none;
+  background: #e1e8ed;
+  color: #7f8c8d;
+  border: 2px solid #e1e8ed;
+  cursor: not-allowed;
+}
+
+.confirm-btn:hover:not(:disabled) {
+  background: #229954;
+  border-color: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+  transition: all ease-in-out 0.2s;
+}

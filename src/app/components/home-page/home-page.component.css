@@ -1,19 +1,19 @@
 .home-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 2%;
 }
 
 /* Hero Section */
 .hero-section {
-  padding: 80px 20px;
+  padding: 12px 20px;
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
-  min-height: 70vh;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -99,7 +99,7 @@
 }
 
 .floating-card:nth-child(2) {
-  top: 50%;
+  top: 35%;
   right: 20%;
   animation-delay: -2s;
 }
@@ -137,23 +137,22 @@
 }
 
 .features-section {
-  padding: 30px 20px;
+  padding: 10px 20px;
 }
 .features-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .feature-icon {
-  text-align: center;
   font-size: 2.5rem;
 }
 
 .feature-button {
   padding: 5px 10px;
   border-radius: 10px;
-  margin: 0 auto;
+  margin: 10px auto;
   cursor: pointer;
 }

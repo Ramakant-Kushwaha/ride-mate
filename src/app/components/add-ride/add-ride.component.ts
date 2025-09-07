@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RideService } from '../../services/ride.service';
+import { Ride } from '../../models/ride.model';
 import { NotificationService } from '../../services/notification.service';
+import { RideService } from '../../services/ride.service';
 import { DateUtils } from '../../utils/date.utils';
+import { CustomValidators } from '../../validators/custom.validators';
 
 @Component({
   selector: 'app-add-ride',
@@ -16,7 +18,11 @@ export class AddRideComponent implements OnInit {
 
   public vehicleTypes = ['Bike', 'Car'];
 
-  constructor(private fb: FormBuilder, private rideService: RideService) {
+  constructor(
+    private fb: FormBuilder,
+    private rideService: RideService,
+    private ns: NotificationService
+  ) {
     this.addRideForm = this.createForm();
   }
 
@@ -28,7 +34,7 @@ export class AddRideComponent implements OnInit {
     return this.fb.group({
       employeeId: ['', [Validators.required]],
       vehicleType: ['', [Validators.required]],
-      vehicleNo: ['', [Validators.required]],
+      vehicleNo: ['', [Validators.required, CustomValidators.vehicleNumber]],
       vacantSeats: [
         '',
         [Validators.required, Validators.min(1), Validators.max(20)],
@@ -39,13 +45,17 @@ export class AddRideComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.addRideForm.valid && !this.isSubmitting) {
       this.isSubmitting = true;
+      const formData: any = this.addRideForm.value;
 
-      const result = this.rideService.addRide(this.addRideForm.value);
+      const ride: Ride = new Ride(formData);
+
+      this.rideService.addRide(ride);
 
       this.isSubmitting = false;
+      this.resetForm();
     } else {
       this.markFormGroupTouched();
     }
@@ -80,7 +90,7 @@ export class AddRideComponent implements OnInit {
       if (errors['min'])
         return `${this.getFieldDisplayName(fieldName)} must be at least 1`;
       if (errors['max'])
-        return `${this.getFieldDisplayName(fieldName)} cannot exceed 10`;
+        return `${this.getFieldDisplayName(fieldName)} cannot exceed 20`;
       if (errors['invalidVehicleNumber'])
         return 'Please enter a valid vehicle number';
       if (errors['invalidTime']) return 'Please enter a valid time';

@@ -1,0 +1,312 @@
+/* Ride Card */
+.ride-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ride-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.ride-card[data-vehicle-type="bike"]::before {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.ride-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Ride Header */
+.ride-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.vehicle-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.vehicle-badge.car {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.vehicle-badge.bike {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.vehicle-number {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ride-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 1px solid #e9ecef;
+}
+
+.time-icon {
+  font-size: 1.1rem;
+}
+
+.time-value {
+  font-weight: 700;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+/* Route Section */
+.route-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.route-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.route-marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pickup-marker {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.destination-marker {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.marker-icon {
+  font-size: 1.2rem;
+}
+
+.route-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.route-label {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.route-location {
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.connector-arrow {
+  color: #7f8c8d;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Ride Info */
+.ride-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.info-icon {
+  font-size: 1.1rem;
+}
+
+.info-label {
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.info-value {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.seats-count {
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.seats-available {
+  background: #d4edda;
+  color: #155724;
+}
+
+.seats-low {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.seats-critical {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Ride Actions */
+.ride-actions {
+  margin-top: 20px;
+}
+
+.book-ride-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.book-ride-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a6fd8, #6a4c93);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-btn {
+  padding: 0px 12px;
+  font-size: 1.5em;
+  border-radius: 5px;
+  border: 1px solid;
+  background: #e47373;
+  cursor: pointer;
+}
+
+.summary-item {
+  margin-bottom: 8px;
+}
+
+.emp-id-from {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  padding: 4px 8px;
+  border: 2px solid #e1e8ed;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-terms {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.cancel-btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0 16px;
+  cursor: pointer;
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0 16px;
+  cursor: pointer;
+  background: #27ae60;
+  color: white;
+  border: 2px solid #27ae60;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover:not(:disabled) {
+  background: #229954;
+  border-color: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+}
+
+.disabled-btn {
+  opacity: 0.6;
+  pointer-events: none;
+  background: #e1e8ed;
+  color: #7f8c8d;
+  border: 2px solid #e1e8ed;
+  cursor: not-allowed;
+}
